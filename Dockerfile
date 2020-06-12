@@ -2,7 +2,7 @@ FROM debian:latest
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
-RUN mkdir /src \
+RUN mkdir /etc/goestools /src \
   && apt-get update \
   && apt-get install -y wget build-essential cmake zlib1g-dev git python3 python3-pip unzip libusb-1.0-0-dev pkg-config libairspy-dev rtl-sdr librtlsdr-dev libopencv-dev
 
@@ -30,7 +30,8 @@ RUN git clone --recursive https://github.com/sam210723/goestools /src/goestools 
   && cd /src/goestools/build \
   && cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make -j4 \
-  && make install
+  && make install \
+  && cp /src/goestools/etc /etc/goestools
 
 RUN rm -rf /src \
   && git clone https://github.com/sam210723/xrit-rx /xrit-rx \
