@@ -41,7 +41,7 @@ RUN rm -rf /src \
   && chmod +x /xrit-rx/src/xrit-rx.py
 
 RUN apt-get remove --purge wget build-essential cmake git unzip \
-  && apt-get autoremove
+  && apt-get autoremove \
   && apt-get clean
 
 ADD entrypoint.sh /entrypoint.sh
