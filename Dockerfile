@@ -37,7 +37,7 @@ RUN rm -rf /src \
   && git clone https://github.com/sam210723/xrit-rx /xrit-rx \
   && pip3 install -r /xrit-rx/requirements.txt \
   && wget -P /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin --no-check-certificate https://cdn-static.ibcl.us/GK2A-Decode_20190811/EncryptionKeyMessage_001F2904C905.bin \
-  && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905
+  && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
   && chmod +x /xrit-rx/src/xrit-rx.py
 
 RUN apt-get remove --purge wget build-essential cmake git unzip \
