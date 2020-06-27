@@ -33,7 +33,7 @@ RUN git clone --recursive https://github.com/sam210723/goestools /src/goestools 
   && cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make -j4 \
   && make install \
-  && cp /src/goestools/etc /etc/goestools
+  && cp -r /src/goestools/etc/* /etc/goestools
 
 RUN rm -rf /src \
   && git clone https://github.com/sam210723/xrit-rx /xrit-rx \
