@@ -47,4 +47,5 @@ RUN apt-get remove --purge wget build-essential cmake git unzip -y \
   && apt-get clean
 
 ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
