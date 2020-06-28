@@ -4,6 +4,7 @@ Docker for GK2A decoding
 ```
 docker volume create xrit-rx
 docker run -d -i -t \
+	--restart always \
 	--name=GK2A \
 	--device /dev/bus/usb \
 	-p 0.0.0.0:5001:5001 \
