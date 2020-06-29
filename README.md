@@ -8,7 +8,7 @@ Install docker-ce, example given on Fedora Linux.
 ```
 [tony@localhost ~]$ dnf install curl
 [tony@localhost ~]$ curl -fsSL get.docker.com -o get-docker.sh
-[tony@localhost ~]$ sudo sh get-docker.sh --mirror Aliyun
+[tony@localhost ~]$ sudo sh get-docker.sh
 [tony@localhost ~]$ sudo groupadd docker
 [tony@localhost ~]$ sudo usermod -aG docker $USER
 [tony@localhost ~]$ systemctl enable docker && systemctl start docker
