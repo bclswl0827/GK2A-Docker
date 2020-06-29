@@ -14,11 +14,11 @@ Install docker-ce, example given on Fedora Linux.
 [tony@localhost ~]$ systemctl enable docker && systemctl start docker
 ```
 
-
+Run GK2A-Docker.
 
 ```
 [tony@localhost]$ docker volume create xrit-rx
-[tony@localhost]$ sudo chmod -R 777 var/lib/docker/volumes/xrit-rx
+[tony@localhost]$ sudo chmod -R 777 /var/lib/docker/volumes/xrit-rx
 [tony@localhost]$ docker run -d -i -t \
 	--restart always \
 	--name=GK2A \
@@ -30,4 +30,10 @@ Install docker-ce, example given on Fedora Linux.
 	-p 0.0.0.0:6002:6002 \
 	-v xrit-rx:/xrit-rx \
 	bclswl0827/gk2a-docker:latest
+```
+
+## Get Pictures
+
+```
+[tony@localhost]$ cd /var/lib/docker/volumes/xrit-rx/_data/src/received
 ```
