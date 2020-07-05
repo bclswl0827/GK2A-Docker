@@ -12,7 +12,7 @@ RUN git clone https://github.com/airspy/airspyone_host /src/airspyone_host \
   && cd /src/airspyone_host \
   && mkdir /src/airspyone_host/build \
   && cd /src/airspyone_host/build \
-  && cmake .. -DINSTALL_UDEV_RULES=ON \
+  && cmake .. \
   && make -j4 \
   && make install \
   && ldconfig
@@ -21,7 +21,7 @@ RUN git clone https://github.com/osmocom/rtl-sdr.git /src/rtl-sdr \
   && cd /src/rtl-sdr \
   && mkdir /src/rtl-sdr/build \
   && cd /src/rtl-sdr/build \
-  && cmake .. -DINSTALL_UDEV_RULES=ON \
+  && cmake .. \
   && make -j4 \
   && make install \
   && ldconfig
@@ -33,7 +33,8 @@ RUN git clone --recursive https://github.com/sam210723/goestools /src/goestools 
   && cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make -j4 \
   && make install \
-  && cp -r /src/goestools/etc/* /etc/goestools
+  && sed -i 's/source = "airspy"/source = "NULL"/g' /src/goestools/etc/goesrecv.conf \
+  && cp -r /src/goestools/etc/goesrecv.conf /etc/goestools/goesrecv.conf
 
 RUN rm -rf /src \
   && git clone https://github.com/sam210723/xrit-rx /xrit-rx \
