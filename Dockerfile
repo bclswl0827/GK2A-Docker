@@ -3,8 +3,8 @@ FROM debian:buster-slim
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
 RUN mkdir /etc/goestools /src \
-  && sed -i "s/deb.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
-  && sed -i "s/security.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
+  #&& sed -i "s/deb.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
+  #&& sed -i "s/security.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
   && apt-get install -y wget build-essential cmake zlib1g-dev git python3 python3-pip unzip libusb-1.0-0-dev pkg-config libairspy-dev rtl-sdr librtlsdr-dev libopencv-dev
 
