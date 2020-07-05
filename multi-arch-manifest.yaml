@@ -4,11 +4,6 @@ manifests:
     platform:
       architecture: amd64
       os: linux
-  - image: bclswl0827/gk2a-docker:arm32v5
-    platform:
-      architecture: arm
-      os: linux
-      variant: v5
   - image: bclswl0827/gk2a-docker:arm32v7
     platform:
       architecture: arm
