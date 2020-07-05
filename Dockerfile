@@ -42,7 +42,7 @@ RUN rm -rf /src \
   && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
   && chmod +x /xrit-rx/src/xrit-rx.py
 
-RUN apt-get remove --purge wget build-essential cmake git unzip -y \
+RUN apt-get remove --purge wget build-essential cmake git unzip pkg-config -y \
   && apt-get autoremove -y \
   && apt-get clean
 
