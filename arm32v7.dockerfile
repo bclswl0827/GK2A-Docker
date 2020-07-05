@@ -4,7 +4,7 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/
 
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-FROM arm32v5/debian:buster-slim
+FROM arm32v7/debian:buster-slim
 
 COPY --from=builder qemu-arm-static /usr/bin
 
