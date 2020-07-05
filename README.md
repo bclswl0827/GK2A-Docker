@@ -24,6 +24,7 @@ Run GK2A-Docker.
 	--name=GK2A \
 	--device /dev/bus/usb \
 	-e DEVICE=airspy \
+	-e GAIN=50 \
 	-p 0.0.0.0:5001:5001 \
 	-p 0.0.0.0:5002:5002 \
 	-p 0.0.0.0:5004:5004 \
