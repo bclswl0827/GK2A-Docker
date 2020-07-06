@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
