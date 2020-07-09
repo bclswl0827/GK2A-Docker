@@ -18,7 +18,7 @@ Run GK2A-Docker.
 
 ```
 [tony@localhost]$ docker volume create xrit-rx
-[tony@localhost]$ sudo chmod -R 777 /var/lib/docker/volumes/xrit-rx
+[tony@localhost]$ sudo chmod -R 777 /var/lib/docker
 [tony@localhost]$ docker run -d -i -t \
  --restart always \
  --name=GK2A \
