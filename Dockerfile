@@ -3,8 +3,9 @@ FROM debian:buster
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
 RUN mkdir /etc/goestools \
-  #&& sed -i "s/deb.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
-  #&& sed -i "s/security.debian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
+  && sed -i "s/http/https/g" /etc/apt/sources.list \
+  && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
+  && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
   && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev
 
