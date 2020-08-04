@@ -37,8 +37,9 @@ RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(
   && mkdir /tmp/dotnet-sdk \
   && wget -O /tmp/dotnet-sdk.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.302/dotnet-sdk-3.1.302-linux-${ARCH}.tar.gz \
   && tar -zxf /tmp/dotnet-sdk.tar.gz -C /tmp/dotnet-sdk \
-  && rm -rf /tmp/dotnet-sdk.tar.gz \
-  && export DOTNET_ROOT=/tmp/dotnet-sdk \
+  && rm -rf /tmp/dotnet-sdk.tar.gz
+
+RUN export DOTNET_ROOT=/tmp/dotnet-sdk \
   && export PATH=$PATH:/tmp/dotnet-sdk \
   && git clone https://github.com/nullpainter/sanchez /sanchez \
   && cd /sanchez/Sanchez \
