@@ -45,8 +45,7 @@ RUN rm -rf /tmp/caddy /sanchez \
   && apt-get install -y dotnet-runtime-3.1 cron \
   && apt-get autoremove -y \
   && apt-get clean \
-  && echo '0 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab - \
-  && /etc/init.d/cron restart
+  && echo '0 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
