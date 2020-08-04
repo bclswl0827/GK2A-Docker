@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
@@ -6,9 +6,13 @@ RUN mkdir -p /etc/goestools /etc/caddy \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
-  && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev gpg \
-  && wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-  && echo "deb [arch=$(dpkg --print-architecture)] http://packages.microsoft.com/repos/microsoft-debian-stretch-multiarch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list
+  && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev
+
+RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb \
+  && dpkg -i /tmp/packages-microsoft-prod.deb \
+  && rm -rf /tmp/packages-microsoft-prod.deb \
+  && apt-get update \
+  && apt-get install -y apt-transport-https
 
 RUN git clone --recursive https://github.com/sam210723/goestools /goestools \
   && cd /goestools \
@@ -41,7 +45,7 @@ RUN apt-get update \
   && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez
 
 RUN rm -rf /tmp/caddy /sanchez \
-  && apt-get remove --purge wget build-essential cmake gpg git dotnet-sdk-3.1 -y \
+  && apt-get remove --purge wget build-essential cmake gpg git apt-transport-https dotnet-sdk-3.1 -y \
   && apt-get install -y dotnet-runtime-3.1 cron \
   && apt-get autoremove -y \
   && apt-get clean \
