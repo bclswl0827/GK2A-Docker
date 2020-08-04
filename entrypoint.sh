@@ -70,6 +70,7 @@ else
 	exit 1
 fi
 
-goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
+/usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
+/usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
 cd /xrit-rx/src
 python3 xrit-rx.py
