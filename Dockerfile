@@ -53,7 +53,7 @@ RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(
   && mkdir /usr/local/bin/dotnet \
   && tar -zxf /tmp/dotnet-sdk.tar.gz -C /usr/local/bin/dotnet \
   && rm -rf /tmp/dotnet-sdk.tar.gz \
-  && echo '*/30 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
+  && echo '*/10 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
 
 RUN apt-get remove --purge wget build-essential cmake git -y \
   && apt-get autoremove -y \
