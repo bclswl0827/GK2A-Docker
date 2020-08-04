@@ -39,14 +39,14 @@ RUN apt-get update \
   && dotnet restore \
   && dotnet build --configuration Release --no-restore \
   && dotnet test --no-restore --verbosity normal \
-  && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez \
-  && echo "0 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED" | crontab -
+  && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez
 
 RUN rm -rf /tmp/caddy /sanchez \
   && apt-get remove --purge wget build-essential cmake gpg git dotnet-sdk-3.1 -y \
   && apt-get install -y dotnet-runtime-3.1 cron \
   && apt-get autoremove -y \
-  && apt-get clean
+  && apt-get clean \
+  && echo "0 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED" | crontab -
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
