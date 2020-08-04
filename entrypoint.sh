@@ -70,7 +70,8 @@ else
 	exit 1
 fi
 mkdir -p /xrit-rx/src/received/LRIT
+echo -e "0.0.0.0:5005 {\n        root /xrit-rx/src/received/LRIT\n        gzip\n        browse\n}" > /etc/caddy/Caddyfile
 /usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
 /usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
 cd /xrit-rx/src
-python3 xrit-rx.py
+/usr/bin/python3 xrit-rx.py
