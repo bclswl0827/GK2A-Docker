@@ -39,6 +39,14 @@ Run GK2A-Docker.
 
 ## Get Pictures
 
+### Get directly
+
 ```
 [tony@localhost]$ cd /var/lib/docker/volumes/xrit-rx/_data/src/received
+```
+
+### Via HTTP
+
+```
+http://[Your IP]:5005
 ```
