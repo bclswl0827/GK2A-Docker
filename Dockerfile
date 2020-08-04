@@ -34,19 +34,19 @@ RUN if [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm7"; else ARCH
   && rm -rf /tmp/caddy
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
-  && mkdir /usr/local/bin/dotnet-sdk \
+  && mkdir /tmp/dotnet-sdk \
   && wget -O /tmp/dotnet-sdk.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.302/dotnet-sdk-3.1.302-linux-${ARCH}.tar.gz \
-  && tar -zxf /tmp/dotnet-sdk.tar.gz -C /usr/local/bin/dotnet-sdk \
+  && tar -zxf /tmp/dotnet-sdk.tar.gz -C /tmp/dotnet-sdk \
   && rm -rf /tmp/dotnet-sdk.tar.gz \
-  && export DOTNET_ROOT=/usr/local/bin/dotnet-sdk \
-  && export PATH=$PATH:/usr/local/bin/dotnet-sdk \
+  && export DOTNET_ROOT=/tmp/dotnet-sdk \
+  && export PATH=$PATH:/tmp/dotnet-sdk \
   && git clone https://github.com/nullpainter/sanchez /sanchez \
   && cd /sanchez/Sanchez \
-  && dotnet restore \
+  && dotnet restore --disable-parallel \
   && dotnet build --configuration Release --no-restore \
   && dotnet test --no-restore --verbosity normal \
   && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez \
-  && rm -rf /sanchez /usr/local/bin/dotnet-sdk
+  && rm -rf /tmp/dotnet-sdk /sanchez
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
   && mkdir /usr/local/bin/dotnet \
