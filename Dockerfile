@@ -3,7 +3,6 @@ FROM debian:buster
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
 RUN mkdir -p /etc/goestools /etc/caddy \
-  && sed -i "s/http/https/g" /etc/apt/sources.list \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
