@@ -54,7 +54,7 @@ RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(
   && wget -O /tmp/dotnet-runtime.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/3.1.6/dotnet-runtime-3.1.6-linux-${ARCH}.tar.gz \
   && tar -zxf /tmp/dotnet-runtime.tar.gz -C /usr/local/bin/dotnet \
   && rm -rf /tmp/dotnet-sdk.tar.gz \
-  && echo '*/10 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
+  && echo '0,10,20,30,40,50 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
 
 RUN apt-get remove --purge wget build-essential cmake git -y \
   && apt-get autoremove -y \
