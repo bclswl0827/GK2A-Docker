@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:stretch
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
@@ -8,7 +8,7 @@ RUN mkdir -p /etc/goestools /etc/caddy \
   && apt-get update \
   && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev gpg \
   && wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-  && echo "deb [arch=$(dpkg --print-architecture)] http://packages.microsoft.com/repos/microsoft-debian-buster-prod/ buster main" > /etc/apt/sources.list.d/dotnetdev.list
+  && echo "deb [arch=$(dpkg --print-architecture)] http://packages.microsoft.com/repos/microsoft-debian-stretch-multiarch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list
 
 RUN git clone --recursive https://github.com/sam210723/goestools /goestools \
   && cd /goestools \
