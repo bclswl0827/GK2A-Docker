@@ -34,8 +34,8 @@ RUN if [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm7"; else ARCH
   && rm -rf /tmp/caddy
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
-  && wget -O /tmp/dotnet-sdk.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.302/dotnet-sdk-3.1.302-linux-${ARCH}.tar.gz \
   && mkdir /tmp/dotnet \
+  && wget -O /tmp/dotnet-sdk.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/3.1.302/dotnet-sdk-3.1.302-linux-${ARCH}.tar.gz \
   && tar -zxf /tmp/dotnet-sdk.tar.gz -C /tmp/dotnet \
   && rm -rf /tmp/dotnet-sdk.tar.gz \
   && export DOTNET_ROOT=/tmp/dotnet \
@@ -46,12 +46,12 @@ RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(
   && dotnet build --configuration Release --no-restore \
   && dotnet test --no-restore --verbosity normal \
   && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez \
-  && rm -rf /tmp/dotnet /sanchez 
+  && rm -rf /tmp/dotnet /sanchez
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
-  && wget -O /tmp/dotnet-runtime.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/3.1.6/dotnet-runtime-3.1.6-linux-${ARCH}.tar.gz \
   && mkdir /usr/local/bin/dotnet \
-  && tar -zxf /tmp/dotnet-sdk.tar.gz -C /usr/local/bin/dotnet \
+  && wget -O /tmp/dotnet-runtime.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/3.1.6/dotnet-runtime-3.1.6-linux-${ARCH}.tar.gz \
+  && tar -zxf /tmp/dotnet-runtime.tar.gz -C /usr/local/bin/dotnet \
   && rm -rf /tmp/dotnet-sdk.tar.gz \
   && echo '*/10 * * * * /usr/local/bin/sanchez/Sanchez -s "/xrit-rx/src/received/LRIT/**/FD/*.jpg" -m /usr/local/bin/sanchez/Resources/Mask.jpg -u /usr/local/bin/sanchez/Resources/GK-2A/Underlay.jpg -o /xrit-rx/src/received/LRIT/COLOURED -t "#0070ba"' | crontab -
 
