@@ -26,7 +26,7 @@ RUN rm -rf /goestools \
   && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
   && chmod +x /xrit-rx/src/xrit-rx.py
 
-RUN if [ "$(dpkg --print-architecture)" = "i386" ]; then ARCH="386"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="armv7"; else ARCH=$(dpkg --print-architecture); fi 、
+RUN if [ "$(dpkg --print-architecture)" = "i386" ]; then ARCH="386"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="armv7"; else ARCH=$(dpkg --print-architecture); fi \
   && mkdir /tmp/caddy \
   && wget -O /tmp/caddy/caddy.tar.gz https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_${ARCH}.tar.gz \
   && tar -xvf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
