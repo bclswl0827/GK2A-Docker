@@ -2,6 +2,9 @@ FROM debian:buster
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
+ENV DOTNET_ROOT=/usr/local/bin/dotnet \
+    PATH=$PATH:/usr/local/bin/dotnet
+
 RUN mkdir -p /etc/goestools /etc/caddy \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
