@@ -9,7 +9,7 @@ RUN mkdir /etc/goestools \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
-  && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev \
+  && apt-get install -y wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev gpg \
   && wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
   && echo "deb [arch=$(dpkg --print-architecture)] http://packages.microsoft.com/repos/microsoft-debian-buster-prod/ buster main" > /etc/apt/sources.list.d/dotnetdev.list
 
@@ -37,7 +37,7 @@ RUN apt-get update \
   && dotnet test --no-restore --verbosity normal \
   && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/sanchez
 
-RUN apt-get remove --purge wget build-essential cmake git dotnet-sdk-3.1 -y \
+RUN apt-get remove --purge wget build-essential cmake gpg git dotnet-sdk-3.1 -y \
   && apt-get install -y dotnet-runtime-3.1 cron \
   && apt-get autoremove -y \
   && apt-get clean
