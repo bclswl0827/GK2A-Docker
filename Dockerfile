@@ -29,8 +29,7 @@ RUN if [ "$(dpkg --print-architecture)" = "i386" ]; then ARCH="386"; elif [ "$(d
   && mkdir /tmp/caddy \
   && wget -O /tmp/caddy/caddy.tar.gz https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_${ARCH}.tar.gz \
   && tar -xvf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
-  && mv /tmp/caddy/caddy /usr/local/bin/caddy \
-  && echo -e "0.0.0.0:5005 {\n        root /xrit-rx/src/received/LRIT\n        gzip\n        browse\n}" > /etc/caddy/Caddyfile
+  && mv /tmp/caddy/caddy /usr/local/bin/caddy
 
 RUN apt-get update \
   && apt-get install -y dotnet-sdk-3.1 \
