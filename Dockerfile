@@ -33,7 +33,7 @@ RUN if [ "$(dpkg --print-architecture)" = "i386" ]; then ARCH="386"; elif [ "$(d
 
 RUN apt-get update \
   && apt-get install -y dotnet-sdk-3.1 \
-  && git clone https://github.com.cnpmjs.org/nullpainter/sanchez /sanchez \
+  && git clone https://github.com/nullpainter/sanchez /sanchez \
   && cd /sanchez/Sanchez \
   && dotnet restore \
   && dotnet build --configuration Release --no-restore \
