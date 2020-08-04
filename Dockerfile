@@ -2,9 +2,7 @@ FROM debian:buster
 
 LABEL maintainer "Yuki Kikuchi <bclswl0827@yahoo.co.jp>"
 
-ENV PATH=$PATH:/usr/local/sanchez
-
-RUN mkdir /etc/goestools \
+RUN mkdir -p /etc/goestools /etc/caddy \
   && sed -i "s/http/https/g" /etc/apt/sources.list \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
@@ -28,6 +26,13 @@ RUN rm -rf /goestools \
   && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
   && chmod +x /xrit-rx/src/xrit-rx.py
 
+RUN if [ "$(dpkg --print-architecture)" = "i386" ]; then ARCH="386"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="armv7"; else ARCH=$(dpkg --print-architecture); fi 、
+  && mkdir /tmp/caddy \
+  && wget -O /tmp/caddy/caddy.tar.gz https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_${ARCH}.tar.gz \
+  && tar -xvf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
+  && mv /tmp/caddy/caddy /usr/local/bin/caddy \
+  && echo -e "0.0.0.0:5005 {\n        root /xrit-rx/src/received/LRIT\n        gzip\n        tls off\n        browse\n}" > /etc/caddy/Caddyfile
+
 RUN apt-get update \
   && apt-get install -y dotnet-sdk-3.1 \
   && git clone https://github.com.cnpmjs.org/nullpainter/sanchez /sanchez \
@@ -35,9 +40,10 @@ RUN apt-get update \
   && dotnet restore \
   && dotnet build --configuration Release --no-restore \
   && dotnet test --no-restore --verbosity normal \
-  && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/sanchez
+  && mv /sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez
 
-RUN apt-get remove --purge wget build-essential cmake gpg git dotnet-sdk-3.1 -y \
+RUN rm -rf /tmp/caddy /sanchez \
+  && apt-get remove --purge wget build-essential cmake gpg git dotnet-sdk-3.1 -y \
   && apt-get install -y dotnet-runtime-3.1 cron \
   && apt-get autoremove -y \
   && apt-get clean
