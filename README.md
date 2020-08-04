@@ -39,7 +39,7 @@ Run GK2A-Docker.
 
 ## Get Pictures
 
-### Get directly
+### Local Disk
 
 ```
 [tony@localhost]$ cd /var/lib/docker/volumes/xrit-rx/_data/src/received
