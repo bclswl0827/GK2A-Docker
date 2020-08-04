@@ -69,8 +69,17 @@ else
 	echo >&2 '  Check your DEVICE string and deploy again?'
 	exit 1
 fi
+
+cat << EOF > /etc/caddy/Caddyfile
+0.0.0.0:5005 {
+    root /xrit-rx/src/received/LRIT
+    tls off
+    gzip
+    browse
+}
+EOF
+
 mkdir -p /xrit-rx/src/received/LRIT
-echo -e "0.0.0.0:5005 {\n        root /xrit-rx/src/received/LRIT\n        gzip\n        browse\n}" > /etc/caddy/Caddyfile
 /usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
 /usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
 cd /xrit-rx/src
