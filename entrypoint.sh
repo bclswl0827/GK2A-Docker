@@ -70,6 +70,8 @@ else
 	exit 1
 fi
 
+/etc/init.d/cron restart
+
 cat << EOF > /etc/caddy/Caddyfile
 0.0.0.0:5005 {
     root /xrit-rx/src/received/LRIT
