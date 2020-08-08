@@ -81,7 +81,7 @@ cat << EOF > /etc/caddy/Caddyfile
 }
 EOF
 
-mkdir -p /xrit-rx/src/received/LRIT
+mkdir -p /xrit-rx/src/received/LRIT/COLOURED
 /usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
 /usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
 cd /xrit-rx/src
