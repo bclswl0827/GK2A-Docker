@@ -9,7 +9,7 @@ RUN mkdir -p /etc/goestools /etc/caddy \
   && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
-  && apt-get install -y cron wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev
+  && apt-get install -y cron wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev graphicsmagick-imagemagick-compat
 
 RUN git clone --recursive https://github.com/sam210723/goestools /goestools \
   && cd /goestools \
@@ -59,10 +59,14 @@ RUN apt-get remove --purge wget build-essential cmake git -y \
   && apt-get autoremove -y \
   && apt-get clean
 
-ADD crontab.sh /crontab.sh
+ADD colour.sh /colour.sh
+ADD convert.sh /convert.sh
 ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /*.sh \
-  && echo "*/10 * * * * /crontab.sh" | crontab -
+  && echo "*/10 * * * * /colour.sh" > /tmp/crontab \
+  && echo "55 23 * * * /convert.sh" >> /tmp/crontab \
+  && crontab /tmp/crontab \
+  && rm -f /tmp/crontab
 
 ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
