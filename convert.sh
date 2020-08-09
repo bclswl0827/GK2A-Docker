@@ -15,5 +15,5 @@ for IMG in $(ls *.jpg);
 
 # Convert
 mkdir -p ${DEST_DIR}
-convert -delay 100 -loop 0 /tmp/resize_${DATE}/*.jpg ${DEST_DIR}/0000-2400_${DATE}.gif
+convert -delay 24 -loop 0 /tmp/resize_${DATE}/*.jpg ${DEST_DIR}/0000-2400_${DATE}.gif
 rm -rf /tmp/resize_${DATE}
