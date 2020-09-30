@@ -6,8 +6,8 @@ ENV DOTNET_ROOT=/usr/local/bin/dotnet \
     PATH=$PATH:/usr/local/bin/dotnet
 
 RUN mkdir -p /etc/goestools /etc/caddy \
-  && sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
-  && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
+  #&& sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
+  #&& sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
   && apt-get update \
   && apt-get install -y cron wget build-essential cmake zlib1g-dev libopencv-dev git python3 python3-pip libairspy-dev librtlsdr-dev graphicsmagick-imagemagick-compat
 
