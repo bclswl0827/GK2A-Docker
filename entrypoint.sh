@@ -83,6 +83,7 @@ EOF
 
 mkdir -p /xrit-rx/src/received/LRIT/COLOURED
 /usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
+/usr/local/bin/filebrowser -r /xrit-rx/src/received -p 8888 -a 0.0.0.0 &
 /usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
 cd /xrit-rx/src
 /usr/bin/python3 xrit-rx.py
