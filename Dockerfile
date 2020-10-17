@@ -33,7 +33,7 @@ RUN if [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm7"; else ARCH
   && tar -zxf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
   && mv /tmp/caddy/caddy /usr/local/bin/caddy \
   && rm -rf /tmp/caddy \
-  && curl https://filebrowser.org/get.sh | bash
+  && curl -fsSL https://filebrowser.org/get.sh | bash
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
   && mkdir /tmp/dotnet-sdk \
