@@ -21,7 +21,7 @@ RUN git clone --recursive https://github.com/sam210723/goestools /goestools \
   && rm -rf /goestools
 
 RUN git clone https://github.com/sam210723/xrit-rx /xrit-rx \
-  && mkdir -p /xrit-rx/src/rereceived \
+  && mkdir -p /xrit-rx/src/received \
   && pip3 install --no-cache-dir -r  /xrit-rx/requirements.txt \
   && wget -P /xrit-rx/src --no-check-certificate https://cdn-static.ibcl.us/GK2A-Decode_20190811/EncryptionKeyMessage_001F2904C905.bin \
   && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
