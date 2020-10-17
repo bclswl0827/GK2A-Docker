@@ -21,6 +21,7 @@ RUN git clone --recursive https://github.com/sam210723/goestools /goestools \
   && rm -rf /goestools
 
 RUN git clone https://github.com/sam210723/xrit-rx /xrit-rx \
+  && mkdir -p /xrit-rx/src/rereceived \
   && pip3 install --no-cache-dir -r  /xrit-rx/requirements.txt \
   && wget -P /xrit-rx/src --no-check-certificate https://cdn-static.ibcl.us/GK2A-Decode_20190811/EncryptionKeyMessage_001F2904C905.bin \
   && python3 /xrit-rx/src/tools/keymsg-decrypt.py /xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
@@ -31,7 +32,8 @@ RUN if [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm7"; else ARCH
   && wget -O /tmp/caddy/caddy.tar.gz https://github.com/caddyserver/caddy/releases/download/v1.0.4/caddy_v1.0.4_linux_${ARCH}.tar.gz \
   && tar -zxf /tmp/caddy/caddy.tar.gz -C /tmp/caddy \
   && mv /tmp/caddy/caddy /usr/local/bin/caddy \
-  && rm -rf /tmp/caddy
+  && rm -rf /tmp/caddy \
+  && wget -O - https://filebrowser.org/get.sh | bash
 
 RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then ARCH="x64"; elif [ "$(dpkg --print-architecture)" = "armhf" ]; then ARCH="arm"; else ARCH=$(dpkg --print-architecture); fi \
   && mkdir /tmp/dotnet-sdk \
