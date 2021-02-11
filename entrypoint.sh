@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -z "$DEVICE" ]; then
 	echo >&2 'error: missing required DEVICE environment variable'
@@ -74,16 +74,16 @@ fi
 
 cat << EOF > /etc/caddy/Caddyfile
 0.0.0.0:5005 {
-    root /xrit-rx/src/received/LRIT
+    root /usr/local/bin/xrit-rx/src/received/LRIT
     tls off
     gzip
     browse
 }
 EOF
 
-mkdir -p /xrit-rx/src/received/LRIT/COLOURED
+mkdir -p /usr/local/bin/xrit-rx/src/received/LRIT/COLOURED
 /usr/local/bin/caddy --conf=/etc/caddy/Caddyfile &
-/usr/local/bin/filebrowser -r /xrit-rx/src/received -p 8888 -a 0.0.0.0 &
+/usr/local/bin/filebrowser -r /usr/local/bin/xrit-rx/src/received -p 8888 -a 0.0.0.0 &
 /usr/local/bin/goesrecv -i 1 -c /etc/goestools/goesrecv.conf &
-cd /xrit-rx/src
+cd /usr/local/bin/xrit-rx/src
 /usr/bin/python3 xrit-rx.py
