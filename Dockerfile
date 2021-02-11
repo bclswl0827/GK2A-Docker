@@ -38,8 +38,8 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && git clone https://github.com/sam210723/xrit-rx /usr/local/bin/xrit-rx \
   && mkdir -p /usr/local/bin/xrit-rx/src/received \
   && pip3 install --no-cache-dir -r /usr/local/bin/xrit-rx/requirements.txt \
-  && curl -L -o ${DIR_TMP}/EncryptionKeyMessage_001F2904C905.bin https://c.ibcl.us/GK2A-Decode_20190811/EncryptionKeyMessage_001F2904C905.bin \
-  && python3 /usr/local/bin/xrit-rx/src/tools/keymsg-decrypt.py ${DIR_TMP}/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
+  && curl -L -o /usr/local/bin/xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin https://c.ibcl.us/GK2A-Decode_20190811/EncryptionKeyMessage_001F2904C905.bin \
+  && python3 /usr/local/bin/xrit-rx/src/tools/keymsg-decrypt.py /usr/local/bin/xrit-rx/src/EncryptionKeyMessage_001F2904C905.bin 001F2904C905 \
   && if [ "$(dpkg --print-architecture)" = "armhf" ]; then \
         ARCH="arm7"; \
      else \

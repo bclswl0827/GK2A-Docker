@@ -21,16 +21,18 @@ Run GK2A-Docker.
 [tony@localhost]$ sudo chmod -R 777 /var/lib/docker
 [tony@localhost]$ docker run -d -i -t \
  --restart always \
- --name=GK2A \
+ --name=goesrecv \
  --device /dev/bus/usb \
  -e DEVICE=airspy \
  -e GAIN=50 \
- -p 0.0.0.0:5001:5001 \
- -p 0.0.0.0:5002:5002 \
- -p 0.0.0.0:5004:5004 \
- -p 0.0.0.0:5005:5005 \
- -p 0.0.0.0:6001:6001 \
- -p 0.0.0.0:6002:6002 \
+ -p 1692:1692 \
+ -p 5001:5001 \
+ -p 5002:5002 \
+ -p 5004:5004 \
+ -p 5005:5005 \
+ -p 6001:6001 \
+ -p 6002:6002 \
+ -p 8888:8888 \
  -v xrit-rx:/xrit-rx \
  bclswl0827/gk2a-docker:latest
 ```
