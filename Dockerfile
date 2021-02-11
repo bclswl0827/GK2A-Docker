@@ -81,7 +81,7 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && mkdir /usr/local/bin/dotnet \
   && curl -o ${DIR_TMP}/dotnet-runtime.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/3.1.6/dotnet-runtime-3.1.6-linux-${ARCH}.tar.gz \
   && tar -zxf ${DIR_TMP}/dotnet-runtime.tar.gz -C /usr/local/bin/dotnet \
-  && chmod +x /opt/* /xrit-rx/src/xrit-rx.py \
+  && chmod +x /opt/* /usr/local/bin/xrit-rx/src/xrit-rx.py \
   && echo "*/10 * * * * /colour.sh" > ${DIR_TMP}/crontab \
   && echo "55 23 * * * /convert.sh" >> ${DIR_TMP}/crontab \
   && crontab ${DIR_TMP}/crontab \
