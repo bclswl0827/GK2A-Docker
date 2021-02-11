@@ -70,7 +70,7 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && dotnet restore --disable-parallel \
   && dotnet build --configuration Release --no-restore \
   && dotnet test --no-restore --verbosity normal \
-  && mv ${DIR_TMP}/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez \
+  && mv ${DIR_TMP}/sanchez/Sanchez/bin/Release/netcoreapp3.1 /usr/local/bin/sanchez \
   && if [ "$(dpkg --print-architecture)" = "amd64" ]; then \
         ARCH="x64"; \
      elif [ "$(dpkg --print-architecture)" = "armhf" ]; then \
