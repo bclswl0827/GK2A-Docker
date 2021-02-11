@@ -33,7 +33,7 @@ Run GK2A-Docker.
  -p 6001:6001 \
  -p 6002:6002 \
  -p 8888:8888 \
- -v xrit-rx:/xrit-rx \
+ -v xrit-rx:/usr/local/bin/xrit-rx/src/received/LRIT \
  bclswl0827/gk2a-docker:latest
 ```
 
