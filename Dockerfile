@@ -30,7 +30,7 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && mkdir -p /etc/goestools /etc/caddy\
   && git clone --recursive https://github.com/sam210723/goestools ${DIR_TMP}/goestools \
   && cd ${DIR_TMP}/goestools \
-  && mkdir -p /goestools/build \
+  && mkdir -p  ${DIR_TMP}/goestools/build \
   && cd ${DIR_TMP}/goestools/build \
   && cmake ../ -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make -j${nproc} \
