@@ -85,7 +85,7 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && echo "*/10 * * * * /colour.sh" > ${DIR_TMP}/crontab \
   && echo "55 23 * * * /convert.sh" >> ${DIR_TMP}/crontab \
   && crontab ${DIR_TMP}/crontab \
-  && rm -f ${DIR_TMP} \
+  && rm -rf ${DIR_TMP} \
   && apt-get autoremove --purge curl ca-certificates make build-essential cmake git -y
 
 ENTRYPOINT ["sh", "-c", "/opt/entrypoint.sh"]
