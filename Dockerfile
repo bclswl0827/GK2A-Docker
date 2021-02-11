@@ -62,7 +62,7 @@ RUN export DIR_TMP="$(mktemp -d)" \
   && tar -zxf ${DIR_TMP}/dotnet-sdk.tar.gz -C ${DIR_TMP}/dotnet-sdk \
   && rm -rf ${DIR_TMP}/dotnet-sdk.tar.gz \
   && git clone https://github.com/nullpainter/sanchez ${DIR_TMP}/sanchez \
-  && cd ${DIR_TMP}/Sanchez \  
+  && cd ${DIR_TMP}/sanchez/Sanchez \  
   && export DOTNET_ROOT=${DIR_TMP}/dotnet-sdk \
             PATH=$PATH:${DIR_TMP}/dotnet-sdk \
   && dotnet restore --disable-parallel \
