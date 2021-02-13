@@ -2,7 +2,7 @@
 
 # ENV
 DATE=$(date +%Y%m%d)
-SRC_DIR=/xrit-rx/src/received/LRIT/COLOURED/${DATE}
+SRC_DIR=/usr/local/bin/xrit-rx/src/received/LRIT/COLOURED/${DATE}
 DEST_DIR=${SRC_DIR}/Merged
 
 # Compress
